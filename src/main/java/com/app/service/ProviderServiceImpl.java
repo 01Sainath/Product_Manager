@@ -28,5 +28,10 @@ public class ProviderServiceImpl implements ProviderService {
 		// TODO Auto-generated method stub
 		return uDao.findAll();
 	}
+	@Override
+	public String get(Integer id) {
+		// TODO Auto-generated method stub
+		return uDao.findById(id).orElseThrow().getEmail();
+	}
 
 }

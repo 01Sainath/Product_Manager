@@ -9,6 +9,8 @@ public interface ProviderService {
 	public String delete(Integer id);
 
 	public List<User> getAll();
+
+	public String get(Integer id);
 	
 	
 }

@@ -28,4 +28,9 @@ public class ProviderController {
 	public List<User> getAll(){
 		return providerServ.getAll();
 	}
+	
+	@GetMapping("/{id}")
+	public String getAUser(@PathVariable Integer id) {
+		return providerServ.get(id);
+	}
 }

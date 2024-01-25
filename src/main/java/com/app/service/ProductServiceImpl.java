@@ -72,10 +72,16 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public String updateProduct(ProductDto prod) {
 		if(pDao.existsById(prod.getId())) {
-			Product p = new Product(prod.getProductName(),prod.getDescription(),prod.getProductQuantity(),prod.getPrice(), prod.getCategory(), prod.isInStock(), prod.getProductionDate());
-			p.setId(prod.getId());
+			
+			Product old = pDao.findById(prod.getId())
+					.orElseThrow();
+			int userId = old.getProvider().getUserId();
+			
+			User u = uDao.findById(userId).orElseThrow();
+			
+			Product p = new Product(prod.getProductName(),prod.getDescription(),prod.getProductQuantity(),prod.getPrice(), prod.getCategory(), prod.isInStock(), prod.getProductionDate(), u);			p.setId(prod.getId());
 			pDao.save(p);
-			return "product updated with id:"+prod.getId();
+			return "product updated with id:"+prod.getId()+"User id: "+userId;
 		}
 		return "something went wrong";
 	}
