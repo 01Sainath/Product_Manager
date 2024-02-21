@@ -23,7 +23,7 @@ public class ProviderController {
 	public String deleteProvider(@PathVariable Integer id) {
 		return providerServ.delete(id);
 	}
-	
+
 	@GetMapping
 	public List<User> getAll(){
 		return providerServ.getAll();
